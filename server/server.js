@@ -26,7 +26,10 @@ const PORT = process.env.PORT || 5000;
 connectDB();
 
 // Middleware
-app.use(cors());
+app.use(cors({
+  origin:"https://zomato-3cc5.vercel.app",
+  credentials: true,
+}));
 app.use(express.json());
 
 
