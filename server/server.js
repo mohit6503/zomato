@@ -32,7 +32,9 @@ app.use(cors({
 }));
 app.use(express.json());
 
-
+app.get("/", (req, res) => {
+  res.send("🍽️ Zomato backend is live!");
+});
   app.use('/api/auth', authRoutes);
   app.use('/api/user', userRoutes);
   app.use('/api/restaurants', restaurantRoutes);
