@@ -29,10 +29,7 @@ connectDB();
 app.use(cors());
 app.use(express.json());
 
-// // Routes
-// app.get('/', (req, res) => {
-  //   res.send('✅ Zomoto Backend is Running!');
-  // });
+
   app.use('/api/auth', authRoutes);
   app.use('/api/user', userRoutes);
   app.use('/api/restaurants', restaurantRoutes);
@@ -56,5 +53,5 @@ server.listen(PORT, () => console.log(`Server running on port ${PORT}`));
 
 // Start the server
 app.listen(PORT, () => {
-  console.log(`🚀 Server is running on http://localhost:${PORT}`);
+  console.log(` Server is running on http://localhost:${PORT}`);
 });

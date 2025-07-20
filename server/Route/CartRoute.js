@@ -4,7 +4,6 @@ import MenuItem from '../Model/MenuItem.js';
 
 const router = express.Router();
 
-//  Add or update item in cart
 router.post('/add', async (req, res) => {
   const { userId, menuItemId, quantity = 1, customization = '' } = req.body;
 
@@ -18,7 +17,6 @@ router.post('/add', async (req, res) => {
       cart = new Cart({ userId, items: [] });
     }
 
-    // Check if item with same customization exists
     const existingIndex = cart.items.findIndex(
       i => i.menuItem.equals(menuItemId) && i.customization === customization
     );
@@ -31,7 +29,6 @@ router.post('/add', async (req, res) => {
       cart.items.push({ menuItem: menuItemId, quantity, customization, subtotal });
     }
 
-    // Recalculate total
     cart.totalAmount = cart.items.reduce((sum, i) => sum + i.subtotal, 0);
 
     await cart.save();
@@ -42,7 +39,6 @@ router.post('/add', async (req, res) => {
   }
 });
 
-// Get user's cart
 router.get('/:userId', async (req, res) => {
   try {
     const cart = await Cart.findOne({ userId: req.params.userId }).populate('items.menuItem');
@@ -52,7 +48,6 @@ router.get('/:userId', async (req, res) => {
   }
 });
 
-//  Remove item
 router.delete('/remove', async (req, res) => {
   const { userId, menuItemId, customization } = req.body;
 

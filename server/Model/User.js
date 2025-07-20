@@ -13,12 +13,12 @@ const userSchema = new mongoose.Schema({
       default: 'Point',
     },
     coordinates: {
-      type: [Number], // [longitude, latitude]
+      type: [Number], 
       default: [0, 0],
     },
   },
 }, { timestamps: true });
 
-userSchema.index({ location: '2dsphere' }); // For geolocation filtering
+userSchema.index({ location: '2dsphere' }); 
 
 export default mongoose.model('User', userSchema);

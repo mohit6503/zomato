@@ -9,8 +9,8 @@ router.get('/', async (req, res) => {
     const { location, cuisine, sortBy } = req.query;
 
     const filter = {};
-    if (location) filter.location = location;
-    if (cuisine) filter.cuisine = cuisine;
+    if (location) filter.location = { $regex: new RegExp(`^${location}$`, 'i') };
+    if (cuisine) filter.cuisine = { $regex: new RegExp(`^${cuisine}$`, 'i') };
 
     let sortOptions = {};
     if (sortBy === 'rating') sortOptions.rating = -1;

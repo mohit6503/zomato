@@ -3,7 +3,6 @@ import MenuItem from '../Model/MenuItem.js';
 
 const router = express.Router();
 
-// Add a menu item (POST)
 router.post('/', async (req, res) => {
   try {
     const item = new MenuItem(req.body);
@@ -14,12 +13,10 @@ router.post('/', async (req, res) => {
   }
 });
 
-// Get all items for a restaurant, grouped by category
 router.get('/:restaurantId', async (req, res) => {
   try {
     const items = await MenuItem.find({ restaurantId: req.params.restaurantId });
 
-    // Group by category
     const grouped = {};
     items.forEach(item => {
       if (!grouped[item.category]) grouped[item.category] = [];
